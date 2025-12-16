@@ -1,8 +1,9 @@
-name: Neocities Deployment
+name: Build & Deploy to Neocities
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -28,12 +29,9 @@ jobs:
           git add entries.json
           git diff --cached --quiet || git commit -m "Update entries.json"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-    - name: Deploy to Neocities
-      uses: bcomnes/deploy-to-neocities@v2
-      with:
-        api_token: ${{ secrets.NEOCITIES_API_KEY }}
-        dist_dir: .
 
+      - name: Deploy to Neocities
+        uses: bcomnes/deploy-to-neocities@v2
+        with:
+          api_token: ${{ secrets.NEOCITIES_API_KEY }}
+          dist_dir: .
