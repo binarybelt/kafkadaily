@@ -30,10 +30,9 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Deploy to Neocities
+      uses: bcomnes/deploy-to-neocities@v2
+      with:
+        api_token: ${{ secrets.NEOCITIES_API_KEY }}
+        dist_dir: .
 
-      - name: Deploy to Neocities
-        uses: bcomnes/deploy-to-neocities@v2
-        with:
-          api_key: ${{ secrets.NEOCITIES_API_KEY }}
-          site_name: ${{ secrets.NEOCITIES_SITE }}
-          directory: .
