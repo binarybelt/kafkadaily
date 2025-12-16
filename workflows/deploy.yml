@@ -1,0 +1,39 @@
+name: Neocities Deployment
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate entries.json
+        run: node generate-entries.js
+
+      - name: Commit updated entries.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add entries.json
+          git diff --cached --quiet || git commit -m "Update entries.json"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to Neocities
+        uses: bcomnes/deploy-to-neocities@v2
+        with:
+          api_key: ${{ secrets.NEOCITIES_API_KEY }}
+          site_name: ${{ secrets.NEOCITIES_SITE }}
+          directory: .
