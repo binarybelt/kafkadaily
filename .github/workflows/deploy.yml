@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Generate entries.json
-        run: node scripts/entryGen.js
+        run: node /scripts/entryGen.js
 
       - name: Commit updated entries.json
         run: |
