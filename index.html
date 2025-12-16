@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Archive</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <nav id="top">
+        <div class="portrait">
+          <img
+            class="img"
+            width="100"
+            height="100"
+            src="https://archive.org/download/kafka-portrait/kafka-portrait.png"
+          />
+        </div>
+
+        <div class="header">
+          <h1><a href="index.html">Kafka Daily</a></h1>
+          <div id="headSub">Kafka's diary entries, every day.</div>
+
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="updates.html">Updates</a></li>
+          </ul>
+          
+        </div>
+      </nav>
+
+      <div id="container">
+        <nav id="navigation">
+          <button id="prevEntryBtn">←← Prev. Entry</button>
+          <button id="prevDayBtn">← Prev. Day</button>
+          <button id="browseBtn">All Entries</button>
+          <button id="nextDayBtn">Next Day →</button>
+          <button id="nextEntryBtn">Next Entry →→</button>
+        </nav>
+        <h3 id="date"></h3>
+
+        <p>
+          Disclaimer: some of the entries are not formatted correctly and/or
+          have spacing issues. I'm working on it!
+        </p>
+
+        <pre id="content">Loading…</pre>
+
+        <div id="choices"></div>
+      </div>
+    </main>
+
+    <script src="kafka.js"></script>
+  </body>
+</html>
